@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dh5psely77xmc"]
+
+[ext_resource type="Texture2D" uid="uid://d2jqqx7ei6v6k" path="res://run.png" id="1_ifad6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0e08"]
+size = Vector2(275, 393)
+
+[sub_resource type="Animation" id="Animation_ypx6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Run:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Run:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u02ey"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Run:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 13), Vector2(22, -18), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Run:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmpsm"]
+_data = {
+&"RESET": SubResource("Animation_ypx6g"),
+&"run": SubResource("Animation_u02ey")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=490538307]
+
+[node name="Run" type="Sprite2D" parent="." unique_id=1577526636]
+position = Vector2(2, 13)
+texture = ExtResource("1_ifad6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1770289895]
+position = Vector2(17.5, -25.5)
+shape = SubResource("RectangleShape2D_i0e08")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=575233744]
+libraries/ = SubResource("AnimationLibrary_dmpsm")
